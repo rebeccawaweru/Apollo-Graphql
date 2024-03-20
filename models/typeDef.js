@@ -20,8 +20,8 @@ const typeDefs = gql `
     }
     type Mutation {
         createStudent(firstName:String!, lastName:String!, age:Int!): Student
-        update(id: ID, firstName:String, lastName:String, age: Int): Student
-        delete(id: ID): Student
+        updateStudent(id: ID!, firstName:String, lastName:String, age: Int): Student
+        deleteStudent(id: ID!): Student
     }
 `;
 
@@ -31,3 +31,4 @@ module.exports = { typeDefs }
 //graphql-tag this allows us write GraphQL queries and mutations as template literals which are then parsed as abstract syntax tree (AST) that represents the query.
 //This AST can then be passed to a GraphQL client or server, such as Apollo. It allows us to embed GraphQL queries and mutations directly into our code in a simple and efficient manner.
 //ALso to access typeDefs outside the module, typeDefs template was exported using module.exports.
+//In GraphQL, the exclamation mark (!) is used to indicate that a field or argument is non-nullable. This means that the field or argument must always have a value; it cannot be null.

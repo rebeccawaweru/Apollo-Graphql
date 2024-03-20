@@ -18,7 +18,7 @@ const resolvers = {
             await newStudent.save();
             return newStudent;
         },
-        update: async(parent, args) => {
+        updateStudent: async(parent, args) => {
             const { id } = args;
             const result = await Student.findByIdAndUpdate(id, args);
             if (!result) {
@@ -26,7 +26,7 @@ const resolvers = {
             }
             return result;
         },
-        delete: async(parent, args) => {
+        deleteStudent: async(parent, args) => {
             const {id} = args;
             const result = await Student.findByIdAndDelete(id);
             if (!result) {

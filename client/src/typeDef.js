@@ -22,8 +22,8 @@ export const CREATE_STUDENT = gql`
 `
 
 export const UPDATE_STUDENT = gql `
-    mutation UpdateStudent($id: ID!, $firstName: String!, $lastName: String!, $age: Int!){
-        update(id:$id, firstName:$firstName, lastName:$lastName, age:$age) {
+    mutation updateStudent($id: ID!, $firstName: String!, $lastName: String!, $age: Int!){
+        updateStudent(id:$id, firstName:$firstName, lastName:$lastName, age:$age) {
             firstName
             lastName
             age
@@ -32,8 +32,8 @@ export const UPDATE_STUDENT = gql `
 `
 
 export const DELETE_STUDENT = gql `
-    mutation DeleteUser($id: ID!) {
-        delete(id: $id){
+    mutation deleteStudent($id: ID!) {
+        deleteStudent(id: $id){
             id
             firstName
             lastName
