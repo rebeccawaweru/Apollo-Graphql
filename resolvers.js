@@ -4,11 +4,11 @@ const resolvers = {
     Query: {
         greetings: () => "GraphQL is Awesome",
         welcome: (parent, args) => `Hello ${args.name}`,
-        students: async() => await Student.find({}),
+        getStudents: async(parent, args) => await Student.find({}),
         student: async (parent, args) => await Student.findById(args.id)
     },
     Mutation: {
-        create: async (parent, args) => {
+        createStudent: async (parent, args) => {
             const { firstName, lastName, age } = args;
             const newStudent = new Student({
                 firstName,

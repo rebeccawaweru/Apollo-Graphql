@@ -9,7 +9,7 @@ const typeDefs = gql `
     type Query {
         greetings: String
         welcome(name:String!):String
-        students:[Student] #return array of students
+        getStudents:[Student] #return array of students
         student(id: ID): Student #return student by id
     }
     type Student {
@@ -19,7 +19,7 @@ const typeDefs = gql `
         age: Int
     }
     type Mutation {
-        create(firstName:String, lastName:String, age:Int): Student
+        createStudent(firstName:String!, lastName:String!, age:Int!): Student
         update(id: ID, firstName:String, lastName:String, age: Int): Student
         delete(id: ID): Student
     }
