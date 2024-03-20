@@ -1,9 +1,40 @@
 //Resolvers are responsible for populating data into schema fields. They are functions that handle data for each field defined in the schema.
+const { Student } = require('./models/Student')
 const resolvers = {
     Query: {
         greetings: () => "GraphQL is Awesome",
-        welcome: (parent, args) => `Hello ${args.name}`
+        welcome: (parent, args) => `Hello ${args.name}`,
+        students: async() => await Student.find({}),
+        student: async (parent, args) => await Student.findById(args.id)
     },
+    Mutation: {
+        create: async (parent, args) => {
+            const { firstName, lastName, age } = args;
+            const newStudent = new Student({
+                firstName,
+                lastName,
+                age,
+            });
+            await newStudent.save();
+            return newStudent;
+        },
+        update: async(parent, args) => {
+            const { id } = args;
+            const result = await Student.findByIdAndUpdate(id, args);
+            if (!result) {
+                throw new Error('Error updating student')
+            }
+            return result;
+        },
+        delete: async(parent, args) => {
+            const {id} = args;
+            const result = await Student.findByIdAndDelete(id);
+            if (!result) {
+                throw new Error('Error deleting student')
+            }
+            return result
+        }
+    }
 };
 
 module.exports = { resolvers };
